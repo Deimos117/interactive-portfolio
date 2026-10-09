@@ -1,0 +1,21 @@
+/* style.css */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #111; /* Dark background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Courier New', Courier, monospace; /* Temporary retro font */
+}
+
+#game-container canvas {
+    /* Critical for crisp pixel art rendering */
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-crisp-edges;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    box-shadow: 0 0 20px rgba(0,0,0,0.8);
+}
