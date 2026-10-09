@@ -23,6 +23,23 @@ export class BootScene extends Phaser.Scene {
 
         // 그린 형태를 'iso-tile' 이라는 텍스처(이미지)로 메모리에 저장
         graphics.generateTexture('iso-tile', 64, 32);
+        
+        // =========================================================
+        // [추후 수정 포인트] 진짜 캐릭터 이미지(png, gif)로 교체할 때 사용하는 곳
+        // =========================================================
+        // 실제 에셋이 준비되면 아래와 같이 코드를 수정하세요:
+        // this.load.image('player-temp', 'assets/sprites/player.png');
+        // 혹은 스프라이트 시트(애니메이션용)인 경우:
+        // this.load.spritesheet('player-temp', 'assets/sprites/player_sheet.png', { frameWidth: 32, frameHeight: 32 });
+        
+        // 현재는 임시 흰색 사각형 캐릭터 텍스처 생성 (가로 20, 세로 40)
+        graphics.clear();
+        graphics.fillStyle(0xffffff, 1);
+        graphics.fillRect(0, 0, 20, 40);
+        graphics.lineStyle(1, 0x000000, 1);
+        graphics.strokeRect(0, 0, 20, 40);
+        graphics.generateTexture('player-temp', 20, 40);
+        
         graphics.destroy(); // 그래픽 객체는 사용 후 삭제
     }
 
