@@ -64,19 +64,13 @@ export class ExteriorScene extends Phaser.Scene {
                 }
             }
         }
-        // 맵의 전체 크기를 계산 (카메라가 맵 밖을 비추지 않도록 제한하기 위해)
-        const mapWidth = mapData[0].length * this.tileWidth;
-        const mapHeight = mapData.length * this.tileHeight;
 
-        // 플레이어 캐릭터 생성 (시작 위치: 400, 200)
-        // 나중에 'player-temp' 대신 실제 에셋 이름('player_idle' 등)으로 교체하면 됩니다.
-        this.player = new Player(this, 400, 200, 'player-temp');
+        // 플레이어 캐릭터 생성 (맵 중앙 근처에 배치)
+        // 'player-placeholder' 텍스처 사용 (프로토타입용, 이후 png로 대체됨)
+        this.player = new Player(this, startX + 100, startY + 100, 'player-placeholder');
 
-        // 카메라 설정: 캐릭터를 따라다니도록 (Follow Camera)
-        this.cameras.main.startFollow(this.player, true, 0.1, 0.1);
-        
-        // 카메라 이동 제한 (선택 사항: 현재는 맵 밖으로 너무 멀리 가지 않게 임의 설정)
-        // this.cameras.main.setBounds(0, 0, 1000, 800);
+        // 카메라가 플레이어를 따라다니도록 설정 (Follow Camera)
+        this.cameras.main.startFollow(this.player, true, 0.05, 0.05); // 부드러운 이동(lerp) 적용
     }
 
     update() {

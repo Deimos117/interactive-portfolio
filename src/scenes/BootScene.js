@@ -23,24 +23,21 @@ export class BootScene extends Phaser.Scene {
 
         // 그린 형태를 'iso-tile' 이라는 텍스처(이미지)로 메모리에 저장
         graphics.generateTexture('iso-tile', 64, 32);
-        
-        // =========================================================
-        // [추후 수정 포인트] 진짜 캐릭터 이미지(png, gif)로 교체할 때 사용하는 곳
-        // =========================================================
-        // 실제 에셋이 준비되면 아래와 같이 코드를 수정하세요:
-        // this.load.image('player-temp', 'assets/sprites/player.png');
-        // 혹은 스프라이트 시트(애니메이션용)인 경우:
-        // this.load.spritesheet('player-temp', 'assets/sprites/player_sheet.png', { frameWidth: 32, frameHeight: 32 });
-        
-        // 현재는 임시 흰색 사각형 캐릭터 텍스처 생성 (가로 20, 세로 40)
-        graphics.clear();
-        graphics.fillStyle(0xffffff, 1);
-        graphics.fillRect(0, 0, 20, 40);
-        graphics.lineStyle(1, 0x000000, 1);
-        graphics.strokeRect(0, 0, 20, 40);
-        graphics.generateTexture('player-temp', 20, 40);
-        
         graphics.destroy(); // 그래픽 객체는 사용 후 삭제
+
+        // ---------------------------------------------------------
+        // 임시 플레이어 캐릭터 그래픽 생성 (32x64 크기의 흰색 사각형)
+        // [조건 반영] 프로토타입 이후 PNG 모델로 대체 가능하도록 작성
+        // TODO: 추후 그래픽이 준비되면 아래 코드들을 삭제하고 다음 코드로 대체합니다:
+        // this.load.image('player-placeholder', 'assets/sprites/player.png');
+        // ---------------------------------------------------------
+        const playerGraphics = this.add.graphics();
+        playerGraphics.fillStyle(0xffffff, 1); // 흰색 캐릭터
+        playerGraphics.lineStyle(1, 0x000000, 1); // 검은색 테두리
+        playerGraphics.fillRect(0, 0, 32, 64);
+        playerGraphics.strokeRect(0, 0, 32, 64);
+        playerGraphics.generateTexture('player-placeholder', 32, 64);
+        playerGraphics.destroy();
     }
 
     create() {
